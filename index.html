@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+
+            /* background: url(https://www.duupdates.in/wp-content/uploads/2018/07/hansraj-collehe-lp.jpg); */
+        }
+
+        .logo {
+            /* margin: auto; */
+            width: 30%;
+            margin-top: 4rem;
+            display: block;
+            background: rgba(255, 255, 255, 0.774);
+            padding: 2rem;
+            padding-right: 5rem;
+            border-radius: 0% 40% 40% 0;
+
+        }
+
+        .lp {
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            z-index: -2;
+        }
+
+        li {
+            background: rgb(40, 130, 233) !important;
+            border: 1px solid black;
+            border-radius: 5px;
+            text-align: center;
+            color: white !important;
+            font-size: small;
+            width: 10rem;
+            margin: 1rem;
+            cursor: pointer;
+            display: block !important;
+            margin-left: 0 !important;
+
+        }
+
+        .left{
+            flex: 0.5;
+        }
+        li:hover {
+            color: rgb(40, 130, 233) !important;
+            background: white !important;
+            border: 1px solid rgb(40, 130, 233) !important;
+        }
+
+        .cover {
+            position: absolute;
+            z-index: -1;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(255, 255, 255, 0.473);
+            top: 0;
+            left: 0;
+
+        }
+
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+
+        }
+
+
+
+        .right {
+            /* flex: 50%; */
+            background: white;
+            padding: 2rem;
+
+        }
+
+        input,
+        textarea {
+            float: right;
+            width: 200px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* button{
+            color: white;
+            background: rgb(45, 133, 148);
+            border: 1px solid grey;
+            padding: 2px;
+        } */
+
+        button {
+            border-radius: 4px;
+        }
+
+        button:hover {
+            color: rgb(40, 130, 233) !important;
+            background: white !important;
+            border: 2px solid rgb(40, 130, 233) !important;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <img class='lp' src="https://www.duupdates.in/wp-content/uploads/2018/07/hansraj-collehe-lp.jpg" alt="">
+    <div class="cover"></div>
+    <header>
+        <img class='logo card' src="./logo.png" alt="">
+    </header>
+    <main>
+        <div class="left">
+            <ul id="ul">
+
+            </ul><button onclick="handleDelete()">DELETE ALL🔪</button>
+        </div>
+        <div class="right card">
+            <h2>ADD MORE</h2>
+            <!-- <label for="name">Name</label> -->
+            <input placeholder="Name" type="text" id='name' name="name">
+            <br>
+            <!-- <label for="text">Enter Text</label> -->
+            <textarea placeholder="Text" type="text" id='text'></textarea>
+            <br>
+            <button class="btn-primary" type="submit" onclick="handleSubmit()">Add</button>
+
+        </div>
+
+
+
+        <script>
+            window.onload = function () {
+
+                for (let i = 0; i < localStorage.count; ++i) {
+                    const li = document.createElement('li')
+                    li.innerText = JSON.parse(localStorage[`item${i + 1}`]).name
+                    li.classList.add("btn");
+                    li.addEventListener("click", () => {
+                        // alert(JSON.parse(localStorage[`item${i + 1}`]).text);
+                        navigator.clipboard.writeText(JSON.parse(localStorage[`item${i + 1}`]).text);
+                        // alert("text")
+                    })
+
+                    document.getElementById('ul').appendChild(li)
+
+                }
+            }
+
+            function handleDelete() {
+                const ct = localStorage.count;
+                for (let i = 0; i < ct; ++i) {
+                    localStorage.removeItem(`item${i}`);
+                    localStorage.count--;
+                }
+                location.reload();
+            }
+
+            function handleSubmit() {
+
+                const name = document.getElementById('name').value;
+                const text = document.getElementById('text').value;
+
+                if (name && text) {
+                    console.log(localStorage)
+                    const a = {};
+                    a.name = name;
+                    a.text = text;
+                    localStorage.count ? (localStorage.count++) : (localStorage.count = 1);
+                    localStorage[`item${localStorage.count}`] = JSON.stringify({ ...a });
+                    document.getElementById('name').value = '';
+                    document.getElementById('text').value = '';
+                }
+                location.reload();
+            }
+
+        </script>
+
+    </main>
+</body>
+
+
+
+</html>
