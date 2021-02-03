@@ -5,12 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Messages</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        html{
+            font-size: 10px;
+        }
         main {
             display: flex;
             /* flex-direction: row; */
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
         }
 
         main .form {
@@ -18,28 +26,66 @@
             width: 50%;
             display: flex;
             flex-direction: column;
+            padding: 1rem;
             padding-right: 1rem;
         }
         body{
-            padding: 1rem;
+            background-color: #000;
+            color: white;
         }
+        p{
+            margin-bottom: 0px;;
+        }
+
+        header{
+            height: 5vw;
+            background-color: #fff;
+            margin-bottom: 2rem;
+            width: 18%;
+            border-radius: 0% 4rem 4rem 0;
+        }   
+
         
-@media (max-width: 800px) {
+
+        .logo{
+            height: 100%;
+            padding: .51rem;
+            background: none;
+            object-fit: contain;
+        }
+        .submit{
+            width: 20%;
+        }
+        .text{
+            padding: 1rem;
+
+        }
+
+        @media (max-width: 800px) {
             main{
                 flex-direction: column ;
                 
             }
-
+            header{
+                height: 15vh;
+                width: 100%;
+                border-radius: 0px;
+                position: sticky;
+                top: 0px;
+                padding: 1rem;
+                box-shadow: 5px 5px black;
+            }
             main .form{
                 width: 100%;
             }
         }
-        
     </style>
 </head>
 
 <body>
-
+<header >
+    <img class='logo' src="./logo.png" alt="">
+</header>
     <main>
         <div class="form">
             <div class="form-group">
@@ -68,7 +114,7 @@
                 <label for="Extra">Extra Information</label>
                 <input type="text" class="form-control" id="Extra" placeholder="Extra Information">
             </div>
-            <button type="" onclick="handleSubmit()" class="btn btn-primary">Submit</button>
+            <button type="" onclick="handleSubmit()" class="btn submit btn-primary">Submit</button>
 
         </div>
 
@@ -83,13 +129,14 @@
         let arr= string.split(",");
         let ol=document.createElement('ol');
         for(let i=0;i<arr.length;++i){
-            let li= document.createElement('li');
-            li.innerText = String(arr[i]);
+            let li= document.createElement('span');
+            li.innerText = String((i+1)+'. '+arr[i]);
             ol.appendChild(li)
+            ol.appendChild(document.createElement("br"))
         }
 
         console.log(ol.innerHTML)
-        return ol.outerHTML;
+        return ol.innerHTML;
     }
     const handleSubmit = () => {
         var text=document.getElementById("text")
@@ -99,20 +146,26 @@
             <br>
 Dear Students,
 <br>
+<br>
 This is to inform you that the internship opportunity for *${document.getElementById("company").value}* has been uploaded on the portal.
 <br>
+<br>
 *Profiles:*
+<br>
 ${bringList(document.getElementById("profiles").value)}
 *Duration:* ${document.getElementById("Duration").value}
-
+<br>
 *Perks:*
+<br>
 ${bringList(document.getElementById("Perks").value)}
 
-*${document.getElementById("Extra").value}*
+${document.getElementById("Extra").value && `<br>*${document.getElementById("Extra").value}*<br><br>`}
 
 *Last Date to Apply:* ${document.getElementById("LastDatetoapply").value}
-
+<br>
+<br>
 Kindly find the link to the *Student Portal* and *Internship Cell’s Student Grievances Email ID* in the group description.
+<br>
 <br>
 Regards
 <br>
