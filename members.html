@@ -7,15 +7,14 @@
     <title>For Messages</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        html{
-            font-size: 16px;
-        }
         main {
             display: flex;
-            flex-direction: row;
+            /* flex-direction: row; */
+            flex-wrap: wrap;
         }
 
         main .form {
+           
             width: 50%;
             display: flex;
             flex-direction: column;
@@ -24,9 +23,18 @@
         body{
             padding: 1rem;
         }
-        li{
-            /* list-style-type: none !important; */
+        
+@media (max-width: 800px) {
+            main{
+                flex-direction: column ;
+                
+            }
+
+            main .form{
+                width: 100%;
+            }
         }
+        
     </style>
 </head>
 
@@ -111,6 +119,16 @@ Regards
 The Internship Cell Team
         </p>
         `;
+let btn= document.createElement("button");
+const data=text.innerText;
+btn.innerText="Copy"
+btn.addEventListener("click", ()=>{
+    navigator.clipboard.writeText(data);
+})
+btn.classList.add("btn")
+btn.classList.add("btn-primary")
+
+text.append(btn)
     }
 </script>
 
