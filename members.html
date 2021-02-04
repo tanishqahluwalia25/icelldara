@@ -177,20 +177,22 @@
             <br>
 Dear Students,
 <br>
+<br>
 This is to inform you that the internship opportunity for *${document.getElementById("company").value}* has been uploaded on the portal.
 <br>
 <br>
 *Profiles:*
 <br>
 ${bringList(document.getElementById("profiles").value)}
+<br>
 *Duration:* ${document.getElementById("Duration").value}
 <br>
 *Perks:*
 <br>
 ${bringList(document.getElementById("Perks").value)}
 
-${document.getElementById("Extra").value && `<br>*${document.getElementById("Extra").value}*<br><br>`}
-
+${document.getElementById("Extra").value && `<br>*${document.getElementById("Extra").value}*<br>`}
+<br>
 *Last Date to Apply:* ${dateInput}
 <br>
 <br>
