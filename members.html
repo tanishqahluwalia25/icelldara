@@ -69,10 +69,11 @@
 
         }
 
-        .dateTime{
+        .dateTime {
             display: flex;
             gap: 1rem;
         }
+
         @media (max-width: 800px) {
             main {
                 flex-direction: column;
@@ -95,7 +96,7 @@
         }
 
 
-        .btn{
+        .btn {
             background-color: rgb(29, 235, 190);
             color: #000;
         }
@@ -105,7 +106,7 @@
 <body>
 
     <header data-aos="fade-right">
-       <a href="/icelldata/"><img class='logo' src="./logo.png" alt=""></a>
+        <a href="/index.html"><img class='logo' src="./logo.png" alt=""></a>
     </header>
     <main>
         <div class="form">
@@ -130,8 +131,8 @@
             <div class="form-group">
                 <label for="LastDatetoapply">Last Date to apply</label>
                 <div class='dateTime'>
-                    <input type="date" class="form-control" id="LastDatetoapply" placeholder="Last Date to apply">
-                    <input type="time" class="form-control" id="LastTimetoapply" placeholder="Last Date to apply">
+                    <input type="text" class="form-control" id="LastDatetoapply" placeholder="Last Date to apply">
+                    <!-- <input type="time" class="form-control" id="LastTimetoapply" placeholder="Last Date to apply"> -->
                 </div>
             </div>
             <div class="form-group">
@@ -168,10 +169,11 @@
     }
     const handleSubmit = () => {
         var text = document.getElementById("text")
-        let dateInput= document.getElementById("LastDatetoapply").value;
+        let dateInput = document.getElementById("LastDatetoapply").value;
         text.innerHTML = `
         <p>
             Greetings from The Internship Cell, Hansraj College!
+            <br>
             <br>
 Dear Students,
 <br>
@@ -187,9 +189,9 @@ ${bringList(document.getElementById("profiles").value)}
 <br>
 ${bringList(document.getElementById("Perks").value)}
 
-${document.getElementById("Extra").value && `<br>*${ document.getElementById("Extra").value}*<br><br>`}
+${document.getElementById("Extra").value && `<br>*${document.getElementById("Extra").value}*<br><br>`}
 
-*Last Date to Apply:* ${dateInput} (${document.getElementById("LastTimetoapply").value? document.getElementById("LastTimetoapply").value:"00:00"})
+*Last Date to Apply:* ${dateInput}
 <br>
 <br>
 Kindly find the link to the *Student Portal* and *Internship Cell’s Student Grievances Email ID* in the group description.
@@ -216,4 +218,7 @@ The Internship Cell Team
     }
 </script>
 
+
+<!-- *Last Date to Apply:* ${dateInput} (${document.getElementById("LastTimetoapply").value ?
+document.getElementById("LastTimetoapply").value : "00:00"}) -->
 </html>
